@@ -1,0 +1,21 @@
+diff -u -r a/kernel-3.18/drivers/misc/mediatek/video/mt6755/videox/mtk_mira.c b/kernel-3.18/drivers/misc/mediatek/video/mt6755/videox/mtk_mira.c
+--- a/kernel-3.18/drivers/misc/mediatek/video/mt6755/videox/mtk_mira.c	2018-08-24 00:58:12.439824105 +0000
++++ b/kernel-3.18/drivers/misc/mediatek/video/mt6755/videox/mtk_mira.c	2018-08-24 00:58:47.932374888 +0000
+@@ -15,7 +15,7 @@
+ 
+ static struct proc_dir_entry *proc_entry;
+ 
+-static long disp_unlocked_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
++static long disp_unlocked_ioctl_mira(struct file *file, unsigned int cmd, unsigned long arg)
+ {
+ 	return mtk_disp_mgr_ioctl(file, cmd, arg);
+ }
+@@ -57,7 +57,7 @@
+ /* Kernel interface */
+ static const struct file_operations disp_fops = {
+ 	.owner = THIS_MODULE,
+-	.unlocked_ioctl = disp_unlocked_ioctl,
++	.unlocked_ioctl = disp_unlocked_ioctl_mira,
+ #ifdef CONFIG_COMPAT
+ 	.compat_ioctl = disp_compat_ioctl,
+ #endif
