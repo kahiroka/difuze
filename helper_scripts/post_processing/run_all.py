@@ -250,6 +250,7 @@ def get_relevant_preproc(struct_name, pre_procs, folder_name):
     found = False
     # a horrible hack..
     for pre in pre_procs:
+        pre = os.path.abspath(pre)
         stuff = subprocess.Popen(['grep', struct_name, pre], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         stdout, stderr = stuff.communicate()
         if len(stdout) > 0:
