@@ -168,8 +168,11 @@ def algo(fname):
     f.close()
     lines = data.splitlines()
     print '[+] Running on file %s' % fname
-    name_line = lines[1]
-    ioctl_name = name_line[name_line.find(': ')+2::]
+    ioctl_name = 'EmptyIoctlName'
+    for line in lines:
+        if 'Provided Function Name:' in line:
+            ioctl_name = line[line.find(': ')+2::]
+            break
     print '[+] ioctl name: %s' % ioctl_name
 
     pre_proc_files = get_pre_procs(lines)
